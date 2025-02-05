@@ -37,14 +37,6 @@ public class Skeleton extends Enemy
         }
     }
 
-    // Skeleton attack method (overridden from Enemy)
-    public int Attack()
-    {
-        // Vary the attack value
-        int randomAttackValue = (int)(Math.random() * 2) + attack;
-        return randomAttackValue;
-    }
-
     // Set the skeleton type randomly
     public void SetRandomSkeletonType()
     {
@@ -60,6 +52,14 @@ public class Skeleton extends Enemy
             type = SkeletonType.BOW;
             attack = 4;
         }
+    }
+
+    // Skeleton attack method (overridden from Enemy)
+    public int Attack()
+    {
+        // Vary the attack value
+        int randomAttackValue = (int)(Math.random() * 2) + attack;
+        return randomAttackValue;
     }
 
     // Skeleton voice line method (overridden from Enemy)

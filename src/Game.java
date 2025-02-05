@@ -116,37 +116,35 @@ public class Game
         WriteLine(player.GetStats() + "\n========================\n");
     }
 
-    // Generate a random enemy based on the player's level
-    public Enemy GenerateRandomEnemy()
+    // Shows the game over message
+    private void GameOver()
     {
-        // Generate a random enemy based on the player's level
-        if (player.level >= 5)
-        {
-            // If the player is level 5, generate a Lich
-            return new Lich();
-        }
-        else if (player.level > 2)
-        {
-            // If the player is above level 2, generate a random skeleton or a slime
-            int random = (int)(Math.random() * 2);
-            if (random % 3 == 0)
-            {
-                return new Slime();
-            }
-            else if (random % 2 == 0)
-            {
-                return new Skeleton();
-            }
-            else
-            {
-                return new Skeleton();
-            }
-        }
-        else
-        {
-            // If the player is below level 2, generate a slime
-            return new Slime();
-        }
+        // Print the game over message
+        WriteLine("=============== Game Over! ===============\n");
+        WriteLine("You have died.\n");
+
+        // Wait for user input to exit the game
+        WaitForInput(true);
+
+        // Exit the game
+        System.exit(0);
+    }
+
+    // Shows the win message
+    private void Win()
+    {
+        // Print the win text
+        WriteLine("=============== Congratulations! ===============\n");
+        WriteLine("You have defeated the Lich!\n");
+        WriteLine("You have saved the kingdom!\n");
+        WriteLine("You win!\n");
+
+        // Display the player's final stats
+        WriteLine("\n==== Ending stats ====\n");
+        WriteLine(player.GetStats() + "\n========================\n");
+
+        // Wait for user input to exit the game
+        WaitForInput(true);
     }
 
     // Slowly print out a message
@@ -218,6 +216,25 @@ public class Game
         }
     }
 
+    // Clear the input buffer
+    private void ClearBuffer()
+    {
+        // Clear the input buffer
+        try
+        {
+            // For each character in the input buffer, read and discard it
+            while (System.in.available() > 0)
+            {
+                System.in.read();
+            }
+        }
+        catch (IOException exception)
+        {
+            // Print the exception if an error occurs
+            exception.printStackTrace();
+        }
+    }
+
     // Clear the screen
     private void ClearScreen()
     {
@@ -225,35 +242,37 @@ public class Game
         System.out.flush();
     }
 
-    // Shows the game over message
-    private void GameOver()
+    // Generate a random enemy based on the player's level
+    public Enemy GenerateRandomEnemy()
     {
-        // Print the game over message
-        WriteLine("=============== Game Over! ===============\n");
-        WriteLine("You have died.\n");
-
-        // Wait for user input to exit the game
-        WaitForInput(true);
-
-        // Exit the game
-        System.exit(0);
-    }
-
-    // Shows the win message
-    private void Win()
-    {
-        // Print the win text
-        WriteLine("=============== Congratulations! ===============\n");
-        WriteLine("You have defeated the Lich!\n");
-        WriteLine("You have saved the kingdom!\n");
-        WriteLine("You win!\n");
-
-        // Display the player's final stats
-        WriteLine("\n==== Ending stats ====\n");
-        WriteLine(player.GetStats() + "\n========================\n");
-
-        // Wait for user input to exit the game
-        WaitForInput(true);
+        // Generate a random enemy based on the player's level
+        if (player.level >= 5)
+        {
+            // If the player is level 5, generate a Lich
+            return new Lich();
+        }
+        else if (player.level > 2)
+        {
+            // If the player is above level 2, generate a random skeleton or a slime
+            int random = (int)(Math.random() * 2);
+            if (random % 3 == 0)
+            {
+                return new Slime();
+            }
+            else if (random % 2 == 0)
+            {
+                return new Skeleton();
+            }
+            else
+            {
+                return new Skeleton();
+            }
+        }
+        else
+        {
+            // If the player is below level 2, generate a slime
+            return new Slime();
+        }
     }
 
     // Generates a new room of the dungeon
@@ -517,25 +536,6 @@ public class Game
         player.TakeDamage(damage);
         // Print the damage message
         WriteLine("The " + enemy.name + " has attacked you for " + damage + " damage!\n");
-    }
-
-    // Clear the input buffer
-    private void ClearBuffer()
-    {
-        // Clear the input buffer
-        try
-        {
-            // For each character in the input buffer, read and discard it
-            while (System.in.available() > 0)
-            {
-                System.in.read();
-            }
-        }
-        catch (IOException exception)
-        {
-            // Print the exception if an error occurs
-            exception.printStackTrace();
-        }
     }
 
     // Method to handle the player defeating an enemy

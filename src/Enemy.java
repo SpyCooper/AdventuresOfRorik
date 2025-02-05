@@ -12,6 +12,12 @@ public abstract class Enemy
     int experience;
     String name;
 
+    // Method that returns the enemy's attack value
+    public int Attack()
+    {
+        return attack;
+    }
+
     // Method to deal damage to the player
     public void DealDamage(Adventurer player)
     {
@@ -28,12 +34,6 @@ public abstract class Enemy
     public void GetExperience(Adventurer player)
     {
         player.AddExperience(experience);
-    }
-
-    // Method that returns the enemy's attack value
-    public int Attack()
-    {
-        return attack;
     }
 
     // Method that returns the enemy's voice line

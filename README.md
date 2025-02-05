@@ -4,13 +4,11 @@
 
 This is a simple text based RPG about Rorik who is tasked by the king to slay a Lich that has been tormenting the kingdom.
 
-## Getting Started
+The entire game can be completed in a terminal and contains basic combat, shopping, and level ups.
 
-All the java files need to be compiled together to be able to run the game.
+## Running the Game
 
 I ran this using the in app run command for VSCode with the "Test Runner for Java" extension in the "Extension Pack for Java" package in VSCode.
-
-The entire game can be completed in a terminal and contains basic combat, shopping, and level ups.
 
 ## Folder Structure
 
